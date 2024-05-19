@@ -4,9 +4,16 @@ import { createApp } from './app'
 const HonoApp = new Hono()
 
 HonoApp.get('*', async (c) => {
-    const context = { url: c.req.url }
-    console.log(context, 'context')
-    const { app } = createApp({ isServer: true })
+    const url = c.req.url
+    const { app, router } = createApp({ isServer: true })
+    router.push(url)
+    await router.isReady()
+    // const matchedComponents = router.getMatchedComponents()
+
+    console.log(
+        router.currentRoute.value.matched.flatMap((record) => Object.values(record.components)),
+        'html'
+    )
     const html = await renderToString(app, c)
     return c.html(`
         <!doctype html>
