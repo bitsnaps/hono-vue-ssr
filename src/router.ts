@@ -1,11 +1,13 @@
 import { createMemoryHistory, createWebHistory, createRouter } from 'vue-router'
-export function createSSRouter(isServer: boolean = true) {
-    // import.meta.env.SSR
+import Index from './pages/index.vue';
+import Home from './pages/home.vue';
+export function createSSRouter(isServer: boolean) {
+    console.log(isServer,'isServer')
     return createRouter({
-        history: isServer ? createMemoryHistory() : createWebHistory(),
+        history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
         routes: [
-            { path: '/', component: () => import('./pages/index.vue') },
-            { path: '/home', component: () => import('./pages/home.vue') }
+            { path: '/', component: Index },
+            { path: '/home', component: Home }
         ]
     })
 }

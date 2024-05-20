@@ -17,25 +17,15 @@ import NoAuthLayout from '@/layouts/noAuth.vue'
 const show = ref(true)
 const Route = useRoute()
 let LayoutComponentName = markRaw(DefaultLayout)
+// 计算当前路由的布局组件
 watchEffect(() => {
     show.value = false
-    console.log(999)
     let times = setTimeout(() => {
         show.value = true
         clearTimeout(times)
     }, 380)
     LayoutComponentName = markRaw(Route.meta.layout == 'noAuth' ? NoAuthLayout : DefaultLayout)
 })
-
-// 计算当前路由的布局组件
-// const LayoutComponentName = computed(() => {
-//     show.value = false
-//     setTimeout(() => {
-//         show.value = true
-//     }, 380)
-//     console.log(Route.meta, 'Route.meta')
-//     return markRaw(Route.meta.layout == 'noAuth' ? NoAuthLayout : DefaultLayout)
-// })
 </script>
 
 <style scoped>

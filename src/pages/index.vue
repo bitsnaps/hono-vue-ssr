@@ -1,6 +1,10 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+const router = useRouter()
+</script>
 <template>
     <div>
-        index???
-        <router-link to="/home">home</router-link>
+        <span>index to</span>
+        <router-link to="/home?a=1111&b=222">Home</router-link>
     </div>
 </template>

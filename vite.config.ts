@@ -11,9 +11,14 @@ import AutoVueRouter from 'vite-plugin-auto-vue-router'
 
 export default defineConfig({
     plugins: [
-        vue(),
-        vueJsx(),
-        VueDevTools(),
+        vue({
+            // template: {
+            //     compilerOptions: {
+            //         // 将所有带短横线的标签名都视为自定义元素
+            //         isCustomElement: (tag) => tag.includes('<router-link>')
+            //     }
+            // }
+        }),
         devServer({
             entry: './src/server.ts',
             exclude: defaultOptions.exclude.concat([
@@ -26,7 +31,9 @@ export default defineConfig({
         }),
         AutoVueRouter({
             dir: fileURLToPath(new URL('/src/pages/', import.meta.url))
-        })
+        }),
+        vueJsx(),
+        VueDevTools(),
     ],
     resolve: {
         alias: {
