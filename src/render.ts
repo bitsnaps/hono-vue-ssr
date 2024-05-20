@@ -1,8 +1,15 @@
 // 用于pages/*的 SSR渲染
-import { createSSRApp, type Component } from 'vue'
+import { createApp } from './app'
 import { renderToString } from 'vue/server-renderer'
 
-export async function createPageRender(components: Component) {
-    const app = createSSRApp(components)
-    return await renderToString(app)
+export async function createRender(url: string) {
+    const { app, router } = createApp({ isServer: true })
+    await router.push(url)
+    await router.isReady()
+
+    const appPage = router.currentRoute.value.matched[0]
+
+    const ctx = {}
+    const appContent = await renderToString(app, ctx)
+    return { appContent, pageError: !appPage  }
 }

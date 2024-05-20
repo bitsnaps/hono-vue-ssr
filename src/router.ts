@@ -1,8 +1,7 @@
 import { createMemoryHistory, createWebHistory, createRouter } from 'vue-router'
 import Index from './pages/index.vue';
 import Home from './pages/home.vue';
-export function createSSRouter(isServer: boolean) {
-    console.log(isServer,'isServer')
+export function createVueRouter(isServer?: boolean) {
     return createRouter({
         history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
         routes: [

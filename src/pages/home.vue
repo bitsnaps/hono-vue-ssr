@@ -6,6 +6,8 @@ const router = useRouter()
 <template>
     <div>
         <span>Home to</span>
-        <router-link to="/">index</router-link>
+        <router-link to="/">
+            <span>index</span>
+        </router-link>
     </div>
 </template>

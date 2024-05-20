@@ -5,6 +5,6 @@ const router = useRouter()
 <template>
     <div>
         <span>index to</span>
-        <router-link to="/home?a=1111&b=222">Home</router-link>
+        <span @click="router.push('/home?a=1111&b=222')">home</span>
     </div>
 </template>
