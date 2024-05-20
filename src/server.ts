@@ -2,8 +2,6 @@ import { Hono } from 'hono'
 import { createRender } from './render'
 import { delDomainName } from './utils/index'
 const HonoApp = new Hono()
-
-
 // 处理请求
 HonoApp.get('*', async (c) => {
     const url = c.req.url

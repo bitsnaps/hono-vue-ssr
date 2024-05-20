@@ -8,6 +8,7 @@ export async function createRender(url: string) {
     await router.isReady()
 
     const appPage = router.currentRoute.value.matched[0]
+    console.log(appPage, 'appPage')
 
     const ctx = {}
     const appContent = await renderToString(app, ctx)
