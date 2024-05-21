@@ -11,6 +11,6 @@ export async function createRender(url: string) {
     console.log(appPage, 'appPage')
 
     const ctx = {}
-    const appContent = await renderToString(app, ctx)
-    return { appContent, pageError: !appPage  }
+    const appContent = await renderToString(app)
+    return { appContent, pageError: !appPage }
 }
