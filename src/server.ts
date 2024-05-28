@@ -6,11 +6,11 @@ const HonoApp = new Hono()
 HonoApp.get('*', async (c) => {
     const url = c.req.url
     const pathName = delDomainName(url)
-    console.log('URL:==>', c.req.url)
-    const { appContent, pageError } = await createRender(pathName)
-    if (pageError) {
-        return c.html('404')
-    }
+    console.log('URL:==>', c.req.url, 'path:'+pathName)
+    const { appContent, pageError } = await createRender(c.req.url, pathName)
+    // if (pageError) {
+    //     return c.html('404')
+    // }
     return c.html(`
         <!doctype html>
         <html lang="en">

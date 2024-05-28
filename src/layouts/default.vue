@@ -7,5 +7,6 @@ import Footer from '@/components/layout/footer.vue'
         <Header></Header>
         <slot></slot>
         <Footer></Footer>
+        ====
     </div>
 </template>

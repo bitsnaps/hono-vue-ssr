@@ -2,30 +2,35 @@
     <component :is="LayoutComponentName">
         <router-view v-slot="{ Component, route }">
             <transition name="slide-fade">
-                <component v-if="show" :is="Component" :key="route.path || undefined" />
+                <component :is="Component" :key="route.path || undefined" />
             </transition>
         </router-view>
     </component>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, watchEffect, markRaw } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import DefaultLayout from '@/layouts/default.vue'
 import NoAuthLayout from '@/layouts/noAuth.vue'
 
 const show = ref(true)
 const Route = useRoute()
+const Router = useRouter()
 let LayoutComponentName = markRaw(DefaultLayout)
+console.log(LayoutComponentName, 'LayoutComponentName')
 // 计算当前路由的布局组件
-watchEffect(() => {
-    show.value = false
-    let times = setTimeout(() => {
-        show.value = true
-        clearTimeout(times)
-    }, 380)
-    LayoutComponentName = markRaw(Route.meta.layout == 'noAuth' ? NoAuthLayout : DefaultLayout)
-})
+// await Router.isReady()
+// watchEffect(async () => {
+//     await Router.isReady()
+//     show.value = false
+//     let times = setTimeout(() => {
+//         show.value = true
+//         clearTimeout(times)
+//     }, 380)
+//     console.log(Route.meta, 'Route.meta')
+//     LayoutComponentName = markRaw(Route.meta.layout == 'noAuth' ? NoAuthLayout : DefaultLayout)
+// })
 </script>
 
 <style scoped>

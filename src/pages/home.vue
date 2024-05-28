@@ -4,10 +4,10 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 </script>
 <template>
-    <div>
+    <span>
         <span>Home to</span>
         <router-link to="/">
             <span>index</span>
         </router-link>
-    </div>
+    </span>
 </template>
